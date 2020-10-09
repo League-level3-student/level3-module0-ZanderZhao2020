@@ -8,7 +8,42 @@ import org.jointheleague.graphical.robot.Robot;
 
 public class _01_RobotRace {
 	//1. make a main method
-	
+		public static void main(String[] args) {
+			boolean Break = false;
+			int Winner = 0;
+			Robot[] Robots = {new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini"), new Robot("mini")};
+			for (int RobotLooper = 0; RobotLooper < Robots.length; RobotLooper++) {
+				Robots[RobotLooper].show();
+				Robots[RobotLooper].setX(25 * RobotLooper + 25);
+				Robots[RobotLooper].setY(500);
+			}
+			Random RNG = new Random();
+			while (true) {
+				for (int RobotLooper = 0; RobotLooper < Robots.length; RobotLooper++) {
+					Robots[RobotLooper].setSpeed(RNG.nextInt(100));
+					Robots[RobotLooper].move(RNG.nextInt(50));
+					Robots[RobotLooper].turn(10);
+				}
+				for (int RobotLooper = 0; RobotLooper < Robots.length; RobotLooper++) {
+					if (Robots[RobotLooper].getY() > 525) {
+						Break = true;
+					}
+				}
+				if (Break) {
+					break;
+				}
+			}
+			for (int RobotLooper = 0; RobotLooper < Robots.length; RobotLooper++) {
+				if (Robots[RobotLooper].getY() > 525) {
+					Winner = RobotLooper + 1;
+					JOptionPane.showMessageDialog(null, "ROBOT " + (RobotLooper + 1) + " WON!!!!!!!");
+					break;
+				}
+			}
+			while (true) {
+				Robots[Winner].turn(5);
+			}
+		}
 		//2. create an array of 5 robots.
 
 		//3. use a for loop to initialize the robots.
